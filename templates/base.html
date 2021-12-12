@@ -1,0 +1,51 @@
+{% load static %}
+<html>
+    <head>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <title>Simple House Template</title>
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+            <link href="{% static 'hm/css/templatemo-style.css' %}" rel="stylesheet" />
+        </head>
+<style>
+.abcd{
+    height: 100%;
+    width: 100%; 
+    background-position: center ;
+ }    
+</style>   
+    </head>
+<body>
+<div class="container">
+
+    <div class="placeholder">
+        <div class="parallax-window" data-parallax="scroll" data-image-src="{% static 'hm/img/simple-house-01.jpg' %}">
+            <div class="tm-header">
+                <div class="row tm-header-inner">
+                    <div class="col-md-12 col-12">
+                        <img src="{% static 'hm/img/vegi.jpg' %}" alt="" class="abcd" /> 
+                    </div>
+                    <nav class="col-md-10 col-12 tm-nav">
+                        <ul class="tm-nav-ul">
+                            <li class="tm-nav-li"><a href="/" class="tm-nav-link active">Home</a></li>
+                            {% if user.is_authenticated %}
+                            <li class="tm-nav-li"><a href="{% url 'logout' %}" class="tm-nav-link">Logout</a></li>
+                            {% else %}
+                            <li class="tm-nav-li"><a href="{% url 'login' %}" class="tm-nav-link">Login</a></li>
+                            <li class="tm-nav-li"><a href="{% url 'register' %}" class="tm-nav-link">Register</a></li>
+                            {% endif %}
+                        </ul>
+                        <br><br>
+              
+                    </nav>	
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

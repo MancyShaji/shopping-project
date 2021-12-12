@@ -1,0 +1,127 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<html>		
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple House Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{% static 'hm/css/templatemo-style.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+
+.tm-gallery-title {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+/* action="/action_page.php" */
+form.example button {
+  float: right;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+<body> 
+  <div>
+	<form action={% url 'search' %} method="get">
+	<form class="example"  style="margin:left;max-width:300px">
+			<input type="text" placeholder="Search.." name="qr">
+			<button type="submit"><i class="fa fa-search fa-spin fa-3x" style="font-size:20px"></i></button>
+	    </form>
+	</form>
+  </div>
+		
+	<div class="container">
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">Welcome to Vegi Shop</h2>
+				<p class="col-12 text-center"></p>
+			</header>
+			
+			<div class="tm-paging-links">
+				<nav>
+					<ul>
+						<li class="tm-paging-item"><a href="/" class="tm-paging-link active">All</a></li>
+						{% for i in ctg %}
+						<li class="tm-paging-item"><a href={{i.fil_url}} class="tm-paging-link">{{i.name}}</a></li>
+						{% endfor %}
+
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Gallery -->
+			<div class="row tm-gallery">
+				<!-- gallery page 1 -->
+			{% for i in prod %}
+				<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+					<article class="col-lg-1 col-md-1 col-sm-1 col-1 tm-gallery-item">
+						<figure>
+							<center>
+							<img src="{{i.img.url}}" alt="Image" style="height: 300;" class="img-fluid tm-gallery-img" />						    
+							<figcaption>
+								
+								<h4 class="tm-gallery-title">{{i.name}}</h4>
+								<p class="tm-gallery-description" style="text-align:center;">{{i.desc|truncatewords:50}}</p>
+								
+								<p class="tm-gallery-price" style="color:coral">Rs.{{i.price}}/kg</p>
+							</center>
+							</figcaption>
+						</figure>
+					</article>
+				</div>
+			{% endfor%}
+			</div>
+	<center>
+		
+	</center>	
+		</main>   
+	</div>
+	<script src="{% static 'hm/js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/parallax.min.js' %}"></script>
+
+</body>
+</html>
+
+{% endblock %}

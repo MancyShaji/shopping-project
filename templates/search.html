@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<html>		
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple House Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />    
+	<link href="{% static 'hm/css/templatemo-style.css' %}" rel="stylesheet" />
+</head>
+<style>
+
+.tm-gallery-title {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ 
+}
+</style>
+<body> 
+	<center>
+	<h1>Item List</h1>
+    </center> 
+	<div class="container">
+	<!-- Top box -->
+		<main>			
+			<div class="tm-paging-links">
+			</div>
+
+			<div class="row tm-gallery">
+				<!-- gallery page 1 -->
+			{% for i in prod %}
+				<div id="tm-gallery-page-pizza" class="tm-gallery-page">
+					<article class="col-lg-1 col-md-1 col-sm-1 col-1 tm-gallery-item">
+						<figure>
+							<img src="{{i.img.url}}" alt="Image" style="height: 250;" class="img-fluid tm-gallery-img" />
+							<figcaption>
+								<center>
+								<h4 class="tm-gallery-title">{{i.name}}</h4>
+								<p class="tm-gallery-description" style="text-align:center;">{{i.desc|truncatewords:50}}</p>								
+								<p class="tm-gallery-price" style="color:coral">Rs.{{i.price}}/kg</p>
+							</center>
+							</figcaption>
+						</figure>
+					</article>
+				</div>
+			{% endfor%}
+			</div>
+		</main>   
+	</div>
+	<script src="{% static 'hm/js/jquery.min.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}
